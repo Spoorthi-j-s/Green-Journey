@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GREEN JOURNEY</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="http://127.0.0.1:5000/static/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">  
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="http://127.0.0.1:5000/static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="http://127.0.0.1:5000/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="http://127.0.0.1:5000/static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="http://127.0.0.1:5000/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="http://127.0.0.1:5000/static/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-dark px-0">
+            <div class="row gx-0">
+                <div class="col-lg-6 bg-dark d-none d-lg-block">
+                    <a href="/" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                        <h1 class="m-0 text-primary text-uppercase">GREEN JOURNEY</h1>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto py-0">
+                                <a href="/home" class="nav-item nav-link">Home</a>
+                                <a href="/recharge" class="nav-item nav-link">wallet</a>
+                                <a href="/" class="nav-item nav-link">Logout</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+
+
+        <!-- Page Header Start -->
+        <div class="container-fluid page-header mb-5 p-0" style="background-image: url(http://127.0.0.1:5000/static/img/bus1.jpg);">
+            <div class="container-fluid page-header-inner py-5">
+                <div class="container text-center pb-5">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Booking</h1>
+                    <nav aria-label="breadcrumb">
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <!-- Booking Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5">
+                    
+                    {% if row %}
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;padding: 25px;">
+                        <div class="wow fadeInUp" data-wow-delay="0.2s"  id="content">
+                            <center><h3>Details</h3></center><hr>
+
+                            
+                            <img src="{{QR}}" style="width: 100%;">
+                            <table class="table">
+                                <tr>
+                                    <th>Name</th><td>{{row[0]}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th><td>{{row[1]}}</td>
+                                </tr>
+                                <tr>
+                                    <th>From</th><td>{{row[2]}}</td>
+                                </tr>
+                                <tr>
+                                    <th>To</th><td>{{row[3]}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date</th><td>{{row[4]}}</td>
+                                </tr>
+                                <tr>
+                                    <th>No of passanger</th><td>{{row[5]}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Names of passanger</th>
+                                    <td>
+                                        <ol>
+                                        {% for name in row[6] %}
+                                            <li>{{name}}</li>
+                                        {% endfor %}
+                                        </ol>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Route No</th><td>{{row[7]}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Deducted amount</th><td>{{row[8]}}</td>
+                                </tr>
+                            </table>
+                            
+                        </div>
+                        <center><button id="download" class="btn btn-info">Download as PDF</button></center>
+                    </div>
+                    {% else %}
+
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;padding: 25px;">
+                        <div class="wow fadeInUp" data-wow-delay="0.2s">
+                            <form action="/booking" method="post">
+                                <div class="row g-3">
+                                    <!-- Existing Input Fields -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                            <label for="name">Your Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                            <label for="email">Your Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="select1" name="from" required>
+                                                <option value="RWF">RWF</option>
+                                                <option value="NES">NES</option>
+                                            </select>
+                                            <label for="select1">From</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="select2" name="to" required>
+                                                <option value="Avalahalli">Avalahalli</option>
+                                                <option value="Rajanukunte">Rajanukunte</option>
+                                            </select>
+                                            <label for="select2">To</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="date" placeholder="Date" name="Date" required>
+                                            <label for="name">Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" id="nop" min="1" max="5" name="nop" placeholder="Number of Passengers" min="1" required>
+                                            <label for="nop">Number of Passengers</label>
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Passenger Names Container -->
+                                    <div class="col-12" id="passenger-names"></div>
+                            
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    {% endif %}
+                    {% if msg %}
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;padding: 25px;">
+                        <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <p>{{msg}}</p>
+                        </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- Booking End -->
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/lib/wow/wow.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/lib/easing/easing.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/lib/waypoints/waypoints.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/lib/counterup/counterup.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="http://127.0.0.1:5000/static/js/main.js"></script>
+
+    <script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today)
+    </script>
+    <script>
+        document.getElementById('download').addEventListener('click', function () {
+            // Select the element to download
+            const element = document.getElementById('content');
+            
+            // Use html2pdf.js to generate the PDF
+            const options = {
+                margin: 1,
+                filename: 'selected-content.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(options).from(element).save();
+        });
+    </script>
+
+<script>
+    // Get references to the elements
+    const nopInput = document.getElementById('nop');
+    const passengerNamesContainer = document.getElementById('passenger-names');
+
+    // Event listener for number of passengers
+    nopInput.addEventListener('input', function () {
+        const numberOfPassengers = parseInt(nopInput.value, 10);
+
+        // Enforce minimum and maximum
+        if (numberOfPassengers < 1 || numberOfPassengers > 5) {
+            alert('Enter between 1 to 5 passenger');
+            return;
+        }
+
+        // Clear existing fields
+        passengerNamesContainer.innerHTML = '';
+
+        // Append input fields for each passenger
+        for (let i = 1; i <= numberOfPassengers; i++) {
+            const div = document.createElement('div');
+            div.classList.add('form-floating', 'mb-3');
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'form-control';
+            input.name = `passenger_name_${i}`;
+            input.placeholder = `Passenger ${i} Name`;
+            input.required = true;
+
+            const label = document.createElement('label');
+            label.textContent = `Passenger ${i} Name`;
+
+            div.appendChild(input);
+            div.appendChild(label);
+            passengerNamesContainer.appendChild(div);
+        }
+    });
+
+    // Trigger the event on page load to ensure at least 1 field is shown
+    nopInput.dispatchEvent(new Event('input'));
+</script>
+</body>
+
+</html>
